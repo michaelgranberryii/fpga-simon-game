@@ -6,7 +6,7 @@ ENTITY rand_gen IS
     PORT (
         clk, rst : IN STD_LOGIC;
         seed : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-        output : OUT STD_LOGIC_VECTOR (3 DOWNTO 0)
+        rand_out : OUT STD_LOGIC_VECTOR (3 DOWNTO 0)
     );
 END rand_gen;
 
@@ -28,7 +28,10 @@ BEGIN
 
     feedback <= currstate(4) XOR currstate(3) XOR currstate(2) XOR currstate(0);
     nextstate <= feedback & currstate(7 DOWNTO 1);
-    output <= "0001" when currstate(7 DOWNTO 4) = "0000" else
-               currstate(7 DOWNTO 4);
+    -- rand_out <= currstate(3 DOWNTO 0);
+    rand_out <= "0001" when currstate(7 DOWNTO 6) = "00" else
+                "0010" when currstate(7 DOWNTO 6) = "01" else
+                "0100" when currstate(7 DOWNTO 6) = "10" else
+                "1000" when currstate(7 DOWNTO 6) = "11";
 
 END Behavioral;

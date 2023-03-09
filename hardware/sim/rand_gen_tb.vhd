@@ -20,7 +20,7 @@ BEGIN
             clk => clk_tb,
             rst => rst_tb,
             seed => seed_tb,
-            output => output_tb
+            rand_out => output_tb
         );
 
     clock : PROCESS
@@ -31,7 +31,7 @@ BEGIN
 
     seed : PROCESS
     BEGIN
-        seed_tb <= x"A4";
+        seed_tb <= x"65";
         rst_tb <= '0';
         WAIT FOR CP;
         rst_tb <= '1';
