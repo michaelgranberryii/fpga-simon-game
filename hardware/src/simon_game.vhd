@@ -48,24 +48,22 @@ architecture Behavioral of simon_game is
     signal clk_div : std_logic;
     signal clk_diff : std_logic;
     signal clk_fl : std_logic;
-    signal count_2Hz : natural;
+    signal counter_div : natural;
     signal counter_diff : natural;
     signal counter_flash : natural;
     signal conter_hold : natural;
     signal pattern_flash_toggle : boolean;
 
 
-    --added
     signal speed_sel : std_logic_vector(4 downto 0);
     signal counter_speed : integer;
     signal clk_game_speed : std_logic;
     constant SPEED0 : integer := (CLK_FREQ/2); -- for 1Hz
     constant SPEED1 : integer := (CLK_FREQ/4); -- for 2Hz
-    constant SPEED2 : integer := (CLK_FREQ/16); -- for 4Hz
-    constant SPEED4 : integer := (CLK_FREQ/32); -- for 8Hz
-    constant SPEED88 : integer := (CLK_FREQ/64); -- for 16Hz
-    constant SPEED_SIM : integer := (CLK_FREQ/1024); -- for 16Hz
-    --
+    constant SPEED2 : integer := (CLK_FREQ/16); -- for 8Hz
+    constant SPEED4 : integer := (CLK_FREQ/32); -- for 16Hz
+    constant SPEED88 : integer := (CLK_FREQ/64); -- for 32Hz
+    constant SPEED_SIM : integer := (CLK_FREQ/1024); -- for 512Hz
 
 
     --***Counters***---------------------------------------
@@ -442,12 +440,12 @@ begin
     begin
         if rst = '1' then
             clk_div <= '0';
-            count_2Hz <= 0;
+            counter_div <= 0;
         elsif rising_edge(clk) then
-            count_2Hz <= count_2Hz + 1;
-            if count_2Hz = HALF_PERIOD-1 then
+            counter_div <= counter_div + 1;
+            if counter_div = HALF_PERIOD-1 then
                 clk_div <= not clk_div;
-                count_2Hz <= 0;
+                counter_div <= 0;
             end if;
         end if;
     end process;
