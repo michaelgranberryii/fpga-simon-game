@@ -10,8 +10,8 @@ end simon_game_tb;
 
 architecture Behavioral of simon_game_tb is
         type p_array is array (0 to 9) of integer range 0 to 8;
-        signal pattern : p_array := (1, 2, 4, 1, 2, 1, 8, 2, 1, 8);
-                                               --2  
+        signal pattern : p_array := (1, 2, 2, 1, 1, 1, 8, 2, 1, 8);
+                                         --2  
         signal clk_tb : std_logic := '1';
         signal btn_tb : std_logic_vector(3 downto 0);
         signal switches_tb : std_logic_vector(3 downto 0);
