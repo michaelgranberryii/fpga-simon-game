@@ -6,6 +6,10 @@ Zybo Z7-10 FPGA SoC Development Board:  Simon Game
 
 This project implements the popular Simon pattern memorization game in VHDL on the Zybo Z7-10. The game is played as follows: The game creates a random sequence of patterns on the on-board LEDS (one LED on at a time), which the player must then repeat by pressing the buttons in the correct order. Each time the player correctly repeats the sequence, the game adds one more pattern to the end of the sequence. The maximum length of the sequence is 10 patterns. If the player guesses wrong, the game ends.
 
+## Demo Video
+
+[Demo on Youtube](https://youtu.be/djObKCHOkBk)
+
 ## Dependencies
 
 ### Hardware
